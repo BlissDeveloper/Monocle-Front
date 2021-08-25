@@ -6,12 +6,12 @@
       @click="initDrawerOpen"
     ></i>
     <p class="title"><b>Welcome, admin!</b></p>
-    <div class="avatar">
+    <div class="avatar ">
       <Avatar
-        class="mr-3"
+        class="mr-3 p-avatar-lg"
         size="large"
         shape="circle"
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSjVzMtofyjkc_jfT9bYca4jYi4fFx2R08tw&usqp=CAU"
+        image="https://i.ytimg.com/vi/HChr5aeN5lk/maxresdefault.jpg"
       />
     </div>
   </div>
@@ -28,7 +28,6 @@ export default {
   methods: {
     initDrawerOpen() {
       this.$emit("drawer-open");
-      console.log("initDrawerOpen");
     },
   },
 };
@@ -44,6 +43,7 @@ export default {
   background: #090c4b;
   height: 80px;
   margin-top: 0;
+  top: 0;
 }
 
 .title {

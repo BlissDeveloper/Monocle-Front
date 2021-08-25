@@ -1,19 +1,14 @@
 <template>
-  <app-bar @drawer-open="setOpen"></app-bar>
-  <Sidebar
-    :visible="true"
-    :dismissable="true"
-    :showCloseIcon="true"
-    :baseZIndex="1000"
-    class="p-sidebar-sm"
+  <the-sidebar
     v-if="isDrawerOpen"
-    @click="isDrawerOpen = false"
-  ></Sidebar>
+    @on-close="isDrawerOpen = false"
+  ></the-sidebar>
+  <app-bar @drawer-open="isDrawerOpen = true"></app-bar>
 </template>
 
 <script>
-import AppBar from "./AppBar.vue";
-import Sidebar from "primevue/sidebar";
+import AppBar from "./appbar/AppBar.vue";
+import TheSidebar from "./sidebar/TheSidebar.vue";
 
 export default {
   data() {
@@ -23,14 +18,15 @@ export default {
   },
   components: {
     AppBar,
-    Sidebar,
+    TheSidebar,
   },
-  methods: {
-    setOpen() {
-      this.isDrawerOpen = !this.isDrawerOpen;
+  watch: {
+    // document.querySelector('body').style.backgroundColor = this.isRed ? 'red' : null;
+    isDrawerOpen() {
+      document.querySelector("body").style.backgroundColor = this.isDrawerOpen
+        ? "rgba(0,0,0,0.4)"
+        : null;
     },
   },
 };
 </script>
-
-<style scoped></style>
