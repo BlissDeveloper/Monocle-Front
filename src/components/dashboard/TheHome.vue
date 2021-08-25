@@ -4,11 +4,12 @@
     @on-close="isDrawerOpen = false"
   ></the-sidebar>
   <app-bar @drawer-open="isDrawerOpen = true"></app-bar>
+  <router-view></router-view>
 </template>
 
 <script>
-import AppBar from "./appbar/AppBar.vue";
-import TheSidebar from "./sidebar/TheSidebar.vue";
+import AppBar from "../ui/appbar/AppBar.vue";
+import TheSidebar from "../ui/sidebar/TheSidebar.vue";
 
 export default {
   data() {

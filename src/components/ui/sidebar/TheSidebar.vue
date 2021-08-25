@@ -8,16 +8,36 @@
       />
     </div>
     <img class="responsive" src="../../../assets/monocle_logo.svg" />
+    <div class="mt-4" style="width: 100%">
+      <menu-item>
+        <template v-slot:icon>
+          <img class="responsive" src="../../../assets/ic_dashboard.svg" />
+        </template>
+        <template v-slot:text>
+          <p>Dashboard</p>
+        </template>
+      </menu-item>
+      <menu-item>
+        <template v-slot:icon>
+          <img class="responsive" src="../../../assets/ic_gear.svg" />
+        </template>
+        <template v-slot:text>
+          <p>Settings</p>
+        </template>
+      </menu-item>
+    </div>
   </div>
 </template>
 
 <script>
 import Button from "primevue/button";
+import MenuItem from "./MenuItem.vue";
 
 export default {
   emits: ["on-close"],
   components: {
     Button,
+    MenuItem,
   },
   methods: {
     onClose() {

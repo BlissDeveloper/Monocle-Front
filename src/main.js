@@ -9,7 +9,11 @@ import "primevue/resources/primevue.min.css"; //core css
 import "primeicons/primeicons.css";
 
 import LoginContainer from "./components/login/LoginContainer.vue";
-import DashboardContainer from "./components/dashboard/DashboardContainer.vue";
+import TheHome from "./components/dashboard/TheHome.vue";
+import AdminPanel from "./components/dashboard/admin_panel/AdminPanel.vue";
+import Settings from "./components/dashboard/settings/Settings.vue";
+import AccountsList from "./components/dashboard/admin_panel/accounts/AccountsList.vue";
+import LandmarksList from "./components/dashboard/admin_panel/landmarks/LandmarksList.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,8 +23,28 @@ const router = createRouter({
       component: LoginContainer,
     },
     {
-      path: "/dashboard",
-      component: DashboardContainer,
+      path: "/home",
+      component: TheHome,
+      children: [
+        {
+          path: "dashboard",
+          component: AdminPanel,
+          children: [
+            {
+              path: "accounts",
+              component: AccountsList,
+            },
+            {
+              path: "landmarks",
+              component: LandmarksList,
+            },
+          ],
+        },
+        {
+          path: "settings",
+          component: Settings,
+        },
+      ],
     },
   ],
 });
