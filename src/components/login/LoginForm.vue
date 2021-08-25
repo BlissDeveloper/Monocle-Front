@@ -2,10 +2,14 @@
   <div class="flex flex-column md:pl-8 md:pr-8">
     <img class="responsive center" src="../../assets/monocle_logo.svg" />
     <label class="mt-3" for="username">Username/Email</label>
-    <text-field id="username" type="username" />
+    <text-field id="username" type="username" maxLength="50" />
     <label class="mt-3" for="password">Password</label>
-    <text-field id="username" type="password" />
-    <m-button class="mt-3 custom-btn" label="Login"></m-button>
+    <text-field id="username" type="password" maxLength="50" />
+    <m-button
+      class="mt-3 custom-btn"
+      label="Login"
+      @click="handleClick"
+    ></m-button>
     <div class="flex flex-row justify-content-center">
       <a><p class="forgot">Forgot Password</p></a>
     </div>
@@ -15,11 +19,30 @@
 <script>
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
+import Messages from "../../utils/Messages";
 
 export default {
+  data() {
+    return {
+      severity: "success",
+      username: "",
+      password: "",
+      show: false,
+    };
+  },
   components: {
     "text-field": InputText,
     "m-button": Button,
+  },
+  methods: {
+    handleClick() {
+      if (this.username.length === 0) {
+        this.errors.push(Messages.PASSWORD_REQ);
+      }
+      if (this.password.length === 0) {
+        this.errors.push(Messages.USERNAME_REQ);
+      }
+    },
   },
 };
 </script>

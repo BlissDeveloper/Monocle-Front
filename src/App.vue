@@ -3,6 +3,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: "App",
 };
@@ -16,4 +18,5 @@ export default {
 * {
   font-family: "ProximaNovaRegular";
 }
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 </style>

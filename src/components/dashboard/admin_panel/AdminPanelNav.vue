@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <router-link class="px-5" to="accounts"><h1>Accounts</h1></router-link>
-    <router-link class="px-5 ml-3" to="landmarks"><h1>Landmarks</h1></router-link>
+    <router-link class="px-5" to="accounts"
+      ><p class="text-base lg:text-4xl">Accounts</p></router-link
+    >
+    <router-link class="px-5 p ml-3" to="landmarks"
+      ><p class="text-base lg:text-4xl">Landmarks</p></router-link
+    >
   </div>
 </template>
 
@@ -13,8 +17,7 @@ export default {};
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-
+  justify-content: center;
 }
 
 a {

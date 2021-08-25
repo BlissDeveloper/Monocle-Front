@@ -1,14 +1,14 @@
 <template>
   <div class="container pl-6">
     <div class="icon"><slot name="icon"></slot></div>
-    <div class="text ml-2">
-      <slot name="text"> </slot>
-    </div>
+    <router-link :to="link"><slot name="text" style="width: 100%"> </slot></router-link>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["link"],
+};
 </script>
 
 <style scoped>
@@ -26,8 +26,24 @@ export default {};
   width: 100%;
 }
 
-.container:hover {
+a {
+  text-decoration: none;
+}
+
+a:hover,
+a.active,
+a.router-link-active {
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+/* .container:hover {
   background-color: rgba(0, 0, 0, 0.5);
+} */
+
+a:link,
+a:visited {
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
 .icon,

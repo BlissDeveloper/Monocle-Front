@@ -1,11 +1,11 @@
 <template>
-  <div class="app-bar">
+  <div class="app-bar h-4rem lg:h-5rem">
     <i
       class="pi pi-bars pl-4"
-      style="fontSize: 2rem; color: white"
+      style="color: white"
       @click="initDrawerOpen"
     ></i>
-    <p class="title"><b>Welcome, admin!</b></p>
+    <p class="title text-base lg:text-xl"><b>Welcome, admin!</b></p>
     <div class="avatar ">
       <Avatar
         class="mr-3 p-avatar-lg"
@@ -41,13 +41,11 @@ export default {
   flex-direction: row;
   overflow: auto;
   background: #090c4b;
-  height: 80px;
   margin-top: 0;
   top: 0;
 }
 
 .title {
-  font-size: 2.5vh;
   color: white;
 }
 

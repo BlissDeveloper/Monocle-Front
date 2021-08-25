@@ -9,7 +9,7 @@
     </div>
     <img class="responsive" src="../../../assets/monocle_logo.svg" />
     <div class="mt-4" style="width: 100%">
-      <menu-item>
+      <menu-item link="/home/dashboard/accounts">
         <template v-slot:icon>
           <img class="responsive" src="../../../assets/ic_dashboard.svg" />
         </template>
@@ -17,7 +17,7 @@
           <p>Dashboard</p>
         </template>
       </menu-item>
-      <menu-item>
+      <menu-item link="/home/settings">
         <template v-slot:icon>
           <img class="responsive" src="../../../assets/ic_gear.svg" />
         </template>
@@ -121,7 +121,7 @@ export default {
 }
 
 .responsive {
-  width: 70%;
+  width: 50%;
   height: auto;
 }
 </style>

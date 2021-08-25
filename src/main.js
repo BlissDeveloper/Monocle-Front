@@ -2,6 +2,9 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
+import { VuesticPlugin } from "vuestic-ui"; // <-
+// import 'vuestic-ui/dist/vuestic-ui.css' // <-
+
 import PrimeVue from "primevue/config";
 import "../node_modules/primeflex/primeflex.css";
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
@@ -14,6 +17,7 @@ import AdminPanel from "./components/dashboard/admin_panel/AdminPanel.vue";
 import Settings from "./components/dashboard/settings/Settings.vue";
 import AccountsList from "./components/dashboard/admin_panel/accounts/AccountsList.vue";
 import LandmarksList from "./components/dashboard/admin_panel/landmarks/LandmarksList.vue";
+import Message from "primevue/message";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -50,6 +54,8 @@ const router = createRouter({
 });
 
 const app = createApp(App);
+app.component(Message);
 app.use(router);
 app.use(PrimeVue);
+app.use(VuesticPlugin);
 app.mount("#app");
