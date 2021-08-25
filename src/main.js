@@ -2,11 +2,16 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
+import { VuesticPlugin } from 'vuestic-ui' // <-
+// import 'vuestic-ui/dist/vuestic-ui.css' // <-
+
 import PrimeVue from "primevue/config";
 import "../node_modules/primeflex/primeflex.css";
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
 import "primeicons/primeicons.css";
+
+
 
 import LoginContainer from "./components/login/LoginContainer.vue";
 import TheHome from "./components/dashboard/TheHome.vue";
@@ -52,4 +57,5 @@ const router = createRouter({
 const app = createApp(App);
 app.use(router);
 app.use(PrimeVue);
+app.use(VuesticPlugin)
 app.mount("#app");
