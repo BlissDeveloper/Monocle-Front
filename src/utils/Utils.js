@@ -3,7 +3,11 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
+const handleError = (error) => {
+  return error.response.data.join(",");
+};
 
 export default {
-    validateEmail
-}
+  validateEmail,
+  handleError
+};

@@ -2,9 +2,19 @@
   <div class="flex flex-column md:pl-8 md:pr-8">
     <img class="responsive center" src="../../assets/monocle_logo.svg" />
     <label class="mt-3" for="username">Username/Email</label>
-    <text-field id="username" type="username" maxLength="50" />
+    <text-field
+      id="username"
+      type="username"
+      maxLength="50"
+      v-model="username"
+    />
     <label class="mt-3" for="password">Password</label>
-    <text-field id="username" type="password" maxLength="50" />
+    <text-field
+      id="username"
+      type="password"
+      maxLength="50"
+      v-model="password"
+    />
     <m-button
       class="mt-3 custom-btn"
       label="Login"
@@ -19,7 +29,7 @@
 <script>
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import Messages from "../../utils/Messages";
+import { signIn } from "../../../service/login-service";
 
 export default {
   data() {
@@ -35,15 +45,39 @@ export default {
     "m-button": Button,
   },
   methods: {
-    handleClick() {
-      if (this.username.length === 0) {
-        this.errors.push(Messages.PASSWORD_REQ);
-      }
-      if (this.password.length === 0) {
-        this.errors.push(Messages.USERNAME_REQ);
+    async handleClick() {
+      this.emitLoad(true);
+      try {
+        await signIn(this.username, this.password);
+        this.emitLoad(false);
+        this.goToDashboard();
+      } catch (error) {
+        this.emitLoad(false);
+        try {
+          // console.log(JSON.stringify(error.response.data));
+          const errorMessage = error.response.data.data;
+          this.showToast(errorMessage, "danger");
+        } catch (_error) {
+          console.log(_error.response.data);
+        }
       }
     },
+    emitLoad(isLoading) {
+      this.$emit("is-loading", isLoading);
+    },
+    showToast(message, color) {
+      this.$vaToast.init({
+        message: message,
+        position: "bottom-right",
+        color: color,
+      });
+    },
+    goToDashboard() {
+      this.showToast("Login success!");
+      this.$router.push("/home/dashboard/accounts");
+    },
   },
+  emits: ["is-loading"],
 };
 </script>
 

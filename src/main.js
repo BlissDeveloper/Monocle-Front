@@ -19,6 +19,7 @@ import AccountsList from "./components/dashboard/admin_panel/accounts/AccountsLi
 import LandmarksList from "./components/dashboard/admin_panel/landmarks/LandmarksList.vue";
 import Message from "primevue/message";
 
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -55,6 +56,7 @@ const router = createRouter({
 
 const app = createApp(App);
 app.component(Message);
+
 app.use(router);
 app.use(PrimeVue);
 app.use(VuesticPlugin);
