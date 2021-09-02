@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
-import { VuesticPlugin } from "vuestic-ui"; // <-
+import { VuesticPlugin } from 'vuestic-ui' // <-
 // import 'vuestic-ui/dist/vuestic-ui.css' // <-
 
 import PrimeVue from "primevue/config";
@@ -18,7 +18,6 @@ import Settings from "./components/dashboard/settings/Settings.vue";
 import AccountsList from "./components/dashboard/admin_panel/accounts/AccountsList.vue";
 import LandmarksList from "./components/dashboard/admin_panel/landmarks/LandmarksList.vue";
 import Message from "primevue/message";
-
 
 const router = createRouter({
   history: createWebHistory(),
