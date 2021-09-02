@@ -33,18 +33,18 @@ const router = createRouter({
       name: "login",
       path: "/login",
       component: LoginContainer,
-      beforeEnter: (to, from, next) => {
-        const isLoggedIn = localStorageUtil.isLoggedIn();
-        if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
-          if (isLoggedIn === "true") {
-            next({ name: "accounts" });
-          } else {
-            next();
-          }
-        } else {
-          next();
-        }
-      },
+      // beforeEnter: (to, from, next) => {
+      //   const isLoggedIn = localStorageUtil.isLoggedIn();
+      //   if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+      //     if (isLoggedIn === "true") {
+      //       next({ name: "accounts" });
+      //     } else {
+      //       next();
+      //     }
+      //   } else {
+      //     next();
+      //   }
+      // },
     },
     {
       name: "home",
@@ -60,23 +60,35 @@ const router = createRouter({
               name: "accounts",
               path: "accounts",
               component: AccountsList,
-              beforeEnter: (to, from, next) => {
-                const isLoggedIn = localStorageUtil.isLoggedIn();
-                if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
-                  if (isLoggedIn === "true") {
-                    next();
-                  } else {
-                    next({ name: "login" });
-                  }
-                } else {
-                  next({ name: "login" });
-                }
-              },
+              // beforeEnter: (to, from, next) => {
+              //   const isLoggedIn = localStorageUtil.isLoggedIn();
+              //   if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+              //     if (isLoggedIn === "true") {
+              //       next();
+              //     } else {
+              //       next({ name: "login" });
+              //     }
+              //   } else {
+              //     next({ name: "login" });
+              //   }
+              // },
             },
             {
               name: "landmarks",
               path: "landmarks",
               component: LandmarksList,
+              // beforeEnter: (to, from, next) => {
+              //   const isLoggedIn = localStorageUtil.isLoggedIn();
+              //   if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+              //     if (isLoggedIn === "true") {
+              //       next();
+              //     } else {
+              //       next({ name: "login" });
+              //     }
+              //   } else {
+              //     next({ name: "login" });
+              //   }
+              // },
             },
           ],
         },
@@ -84,10 +96,57 @@ const router = createRouter({
           name: "settings",
           path: "settings",
           component: Settings,
+          // beforeEnter: (to, from, next) => {
+          //   const isLoggedIn = localStorageUtil.isLoggedIn();
+          //   if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+          //     if (isLoggedIn === "true") {
+          //       next();
+          //     } else {
+          //       next({ name: "login" });
+          //     }
+          //   } else {
+          //     next({ name: "login" });
+          //   }
+          // },
         },
       ],
     },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  console.log("beforeEach");
+  const isLoggedIn = localStorageUtil.isLoggedIn();
+  if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+    if (to.name === "login") {
+      if (isLoggedIn === "false") {
+        next();
+      } else {
+        // next({ path: "/home/dashboard/accounts" });
+        next({ name: 'accounts' });
+      }
+    } else if (to.name === "accounts") {
+      if (isLoggedIn === "true") {
+        next();
+      } else {
+        next({ name: "login" });
+      }
+    } else {
+      if (isLoggedIn === "true") {
+        next({ name: "accounts" });
+      } else {
+        next({ name: "login" });
+      }
+    }
+  } else {
+    if (to.name === "login") {
+      next();
+    } else if (to.name === "accounts") {
+      next({ name: "login" });
+    } else {
+      next({ name: "login" });
+    }
+  }
 });
 
 const app = createApp(App);

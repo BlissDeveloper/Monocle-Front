@@ -3,7 +3,6 @@
     :paginator="true"
     :rows="10"
     paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-    :rowsPerPageOptions="[10, 20, 50]"
     class="mt-4"
     :value="users"
     responsiveLayout="scroll"
