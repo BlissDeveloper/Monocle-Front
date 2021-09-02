@@ -19,13 +19,32 @@ import AccountsList from "./components/dashboard/admin_panel/accounts/AccountsLi
 import LandmarksList from "./components/dashboard/admin_panel/landmarks/LandmarksList.vue";
 import Message from "primevue/message";
 
+import localStorageUtil from "./utils/localStorageUtil";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      name: "landing",
+      path: "/",
+      redirect: { name: "login" },
+    },
+    {
       name: "login",
       path: "/login",
       component: LoginContainer,
+      beforeEnter: (to, from, next) => {
+        const isLoggedIn = localStorageUtil.isLoggedIn();
+        if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+          if (isLoggedIn === "true") {
+            next({ name: "accounts" });
+          } else {
+            next();
+          }
+        } else {
+          next();
+        }
+      },
     },
     {
       name: "home",
@@ -41,6 +60,18 @@ const router = createRouter({
               name: "accounts",
               path: "accounts",
               component: AccountsList,
+              beforeEnter: (to, from, next) => {
+                const isLoggedIn = localStorageUtil.isLoggedIn();
+                if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+                  if (isLoggedIn === "true") {
+                    next();
+                  } else {
+                    next({ name: "login" });
+                  }
+                } else {
+                  next({ name: "login" });
+                }
+              },
             },
             {
               name: "landmarks",

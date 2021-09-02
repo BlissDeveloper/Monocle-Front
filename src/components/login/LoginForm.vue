@@ -29,7 +29,9 @@
 <script>
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import loginService from "../../../service/loginService";
+
+import loginService from "../../service/loginService";
+import localStorageUtil from "../../utils/localStorageUtil";
 
 export default {
   data() {
@@ -73,6 +75,7 @@ export default {
       if (loginResponse.status === 200) {
         this.severity = "success";
         this.showToast("Login success!");
+        localStorageUtil.setLoggedIn(true);
         this.goToDashboard();
       }
     },

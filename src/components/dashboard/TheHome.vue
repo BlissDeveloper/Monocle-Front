@@ -22,7 +22,6 @@ export default {
     TheSidebar,
   },
   watch: {
-    // document.querySelector('body').style.backgroundColor = this.isRed ? 'red' : null;
     isDrawerOpen() {
       document.querySelector("body").style.backgroundColor = this.isDrawerOpen
         ? "rgba(0,0,0,0.4)"
