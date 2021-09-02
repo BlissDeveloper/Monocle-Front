@@ -115,15 +115,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log("beforeEach");
   const isLoggedIn = localStorageUtil.isLoggedIn();
-  if (isLoggedIn !== null || typeof isLoggedIn !== "undefined") {
+  if (isLoggedIn !== null) {
+    console.log("Hindi null yung localstorage item");
     if (to.name === "login") {
       if (isLoggedIn === "false") {
         next();
       } else {
         // next({ path: "/home/dashboard/accounts" });
-        next({ name: 'accounts' });
+        next({ name: "accounts" });
       }
     } else if (to.name === "accounts") {
       if (isLoggedIn === "true") {
@@ -133,12 +133,13 @@ router.beforeEach((to, from, next) => {
       }
     } else {
       if (isLoggedIn === "true") {
-        next({ name: "accounts" });
+        next();
       } else {
         next({ name: "login" });
       }
     }
   } else {
+    console.log("Null yung localstorage item");
     if (to.name === "login") {
       next();
     } else if (to.name === "accounts") {

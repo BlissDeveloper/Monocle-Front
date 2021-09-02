@@ -30,7 +30,7 @@
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 
-import loginService from "../../service/loginService";
+import loginService from "../../service/apiService";
 import localStorageUtil from "../../utils/localStorageUtil";
 
 export default {

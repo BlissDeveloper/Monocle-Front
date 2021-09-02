@@ -13,6 +13,11 @@ const signIn = (email, password) => {
   });
 };
 
+const getUsers = () => {
+  return axios.get("/user/list");
+};
+
 export default {
   signIn,
+  getUsers,
 };

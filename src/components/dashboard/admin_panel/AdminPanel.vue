@@ -5,7 +5,9 @@
       <admin-panel-nav></admin-panel-nav>
       <hr />
       <search-bar class="lg:pl-6 lg:pr-6 "></search-bar>
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
     <div class="col-1"></div>
   </div>
