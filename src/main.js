@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 
-import { VuesticPlugin } from 'vuestic-ui' // <-
+import { VuesticPlugin } from "vuestic-ui"; // <-
 // import 'vuestic-ui/dist/vuestic-ui.css' // <-
 
 import PrimeVue from "primevue/config";
@@ -23,28 +23,34 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      name: "login",
       path: "/login",
       component: LoginContainer,
     },
     {
+      name: "home",
       path: "/home",
       component: TheHome,
       children: [
         {
+          name: "dashboard",
           path: "dashboard",
           component: AdminPanel,
           children: [
             {
+              name: "accounts",
               path: "accounts",
               component: AccountsList,
             },
             {
+              name: "landmarks",
               path: "landmarks",
               component: LandmarksList,
             },
           ],
         },
         {
+          name: "settings",
           path: "settings",
           component: Settings,
         },

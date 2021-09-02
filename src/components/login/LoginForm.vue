@@ -29,7 +29,7 @@
 <script>
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
-import { signIn } from "../../../service/login-service";
+import loginService from "../../../service/loginService";
 
 export default {
   data() {
@@ -47,34 +47,34 @@ export default {
   methods: {
     async handleClick() {
       this.emitLoad(true);
-      try {
-        await signIn(this.username, this.password);
-        this.emitLoad(false);
-        this.goToDashboard();
-      } catch (error) {
-        this.emitLoad(false);
-        try {
-          // console.log(JSON.stringify(error.response.data));
-          const errorMessage = error.response.data.data;
-          this.showToast(errorMessage, "danger");
-        } catch (_error) {
-          console.log(_error.response.data);
-        }
-      }
+      this.handleResponse();
     },
     emitLoad(isLoading) {
       this.$emit("is-loading", isLoading);
     },
-    showToast(message, color) {
+    showToast(message) {
       this.$vaToast.init({
         message: message,
         position: "bottom-right",
-        color: color,
+        color: this.severity,
       });
     },
     goToDashboard() {
       this.showToast("Login success!");
-      this.$router.push("/home/dashboard/accounts");
+      this.$router.replace({ name: "accounts" });
+    },
+    async handleResponse() {
+      const loginResponse = await loginService
+        .signIn(this.username, this.password)
+        .catch((err) => {
+          this.severity = "danger";
+          this.showToast(err.response.data.message);
+        });
+      if (loginResponse.status === 200) {
+        this.severity = "success";
+        this.showToast("Login success!");
+        this.goToDashboard();
+      }
     },
   },
   emits: ["is-loading"],
